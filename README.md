@@ -6,13 +6,15 @@ Core of server/client network communication done using modified version of tutor
 
 # MongoDB
 Install MongoDB:
+https://docs.mongodb.com/manual/installation/
 
-
-Install MongoDB C driver here:
+Install MongoDB C driver:
 http://mongoc.org/libmongoc/current/tutorial.html#include-and-link-libmongoc-in-your-c-program
 
 # How to use
  - Compile the C files, linking the libmongo.c library to compilation.
-
+ 
  - Initiate your MongoDB server before running any file:
-## mongod
+ > $ mongod
+ 
+ - Run your file (hopefully with no mistakes :) )
