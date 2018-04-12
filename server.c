@@ -10,6 +10,12 @@
 
 //the thread function
 void *connection_handler(void *);
+//A string is modified to display a list of available commands to the user
+void listAvailableCommands(char *help, bool isProfessor);
+//parses user's request and updates its contents with its result
+void parseRequestAndUpdateWithResult(char *request, char *ans, bool isProfessor);
+//fetches a word from a string, ignoring whitespaces and returns the number of characters read in the original string (including whitespace)
+int fetchWord(char *original, char *word);
 
 // mongoDB
 // client creation
@@ -20,20 +26,18 @@ mongoc_database_t *getDatabase(mongoc_client_t *client);
 mongoc_collection_t *getCollection(mongoc_client_t *client, char *collName);
 //retrieve a document, given an id and optional attribute
 char *retrieveDocumentWithAttribute(mongoc_client_t *client, mongoc_collection_t *collection, char* user_id, char* attribute, char* value);
+//return all courses and their infos
 
-//returns a list of commands available to the user_id
-char *listAvailableCommands(bool isProfessor);
-// return all courses and their infos
+//return content of a specific course
 
-// return content of a specific course
+//return all info of a specific course
 
-// return all info of a specific course
+//return all courses ids and titles
 
-// return all courses ids and titles
+//add a comment on the course (only available to course's professor)
 
-// add a comment on the course (only available to course's professor)
+//get most recent comment on the course
 
-// get most recent comment on the course
 
 int main(int argc , char *argv[])
 {
@@ -197,11 +201,11 @@ void *connection_handler(void *socket_desc)
         //now the user is logged in correctly and s/he may make queries to the server
         else{
             if(strcmp(client_message, "help") == 0){
-                strcpy(message, listAvailableCommands(isProfessor));
+                listAvailableCommands(message, isProfessor);
             }
             else{
                 //parse user's request and return the value of a mongo query to user
-                strcpy(message, "Pretend your answer is here!");
+                parseRequestAndUpdateWithResult(client_message, message, isProfessor);
             }
         }
         write(sock, message, strlen(message));
@@ -295,7 +299,109 @@ mongoc_client_t *createDatabaseClient(){
 
   return client;
 }
+/*
+A string is modified to display a list of available commands to the user, based on its privileges (student/professor)
+*/
+void listAvailableCommands(char *help, bool isProfessor){
+    char *str;
+    help[0] = '\0';
+    str = "'content COURSE_CODE' = Displays content of given course\n";
+    strcat(help, str);
+    str = "'list COURSE_CODE' = Displays name of given course\n";
+    strcat(help, str);
+    str = "'list all' = Displays all courses available\n";
+    strcat(help, str);
+    str = "'detail COURSE_CODE' = Displays detailed information of given course\n";
+    strcat(help, str);
+    str = "'detail all' = Displays detailed information of all courses available\n";
+    strcat(help, str);
+    str = "'remark COURSE_CODE' = Displays professor's remarks on the course";
+    strcat(help, str);
+    if(isProfessor){
+        str = "\n'remark COURSE_CODE MESSAGE' = Adds a new remark to the subject in case the lecturer of this course is you";
+        strcat(help, str);
+    }
+    return;
+}
+/*
+Parses user's request and updates its contents with its result
+*/
+void parseRequestAndUpdateWithResult(char *request, char *ans, bool isProfessor) {
+    //list command
+    char command[200];
+    int startNextWord;
+    bool invalid = false;
+    startNextWord = fetchWord(request, command);
 
-char *listAvailableCommands(bool isProfessor){
-    return "TODO";
+    // puts("COMMAND IS EQUAL TO:");
+    // puts(command);
+
+    if(strcmp(command, "list") == 0){
+        if(strcmp(request+startNextWord, "all") == 0){
+            //request to list all
+        } else if(request[startNextWord]!='\0'){
+            //request to list this course
+        } else
+            invalid = true;
+    }
+    //content command
+    else if(strcmp(command, "content") == 0){
+        if(request[startNextWord]!='\0'){
+
+        }
+        else
+            invalid = true;
+    }
+    //detail command
+    else if(strcmp(command, "detail") == 0){
+        if(strcmp(request+startNextWord, "all") == 0){
+            //request to detail  all
+        } else if(request[startNextWord]!='\0'){
+            //request to detail this course
+        } else
+            invalid = true;
+    }
+    //remark command
+    else if(strcmp(command, "remark") == 0){
+        if(request[startNextWord]!='\0'){
+            char course[100];
+            int charCount;
+            startNextWord += fetchWord(request+startNextWord, course);
+
+            //request to show remarks
+            if(request[startNextWord] == '\0'){
+
+            }
+            //request to write a remark
+            else if (isProfessor){
+
+            }
+            else
+                invalid = true;
+        }
+        else
+            invalid = true;
+    }
+    else
+        invalid = true;
+    if(invalid)
+        strcpy(ans, "Invalid Command. Type 'help' for a list of available commands.");
+    return;
+}
+/*
+Fetches a word from a string, ignoring whitespaces and returns the number of characters read in the original string (including whitespace)
+*/
+int fetchWord(char *original, char *word){
+    int i = 0, indexWord;
+    while(original[i]==' ')
+        i++;
+    indexWord = i;
+    while(original[i]!=' ' && original[i]!='\0'){
+        word[i-indexWord] = original[i];
+        i++;
+    }
+    word[i-indexWord] = '\0';
+    while(original[i]==' ')
+        i++;
+    return i;
 }
