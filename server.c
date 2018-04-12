@@ -13,7 +13,7 @@ void *connection_handler(void *);
 //A string is modified to display a list of available commands to the user
 void listAvailableCommands(char *help, bool isProfessor);
 //parses user's request and updates its contents with its result
-void parseRequestAndUpdateWithResult(char *request, char *ans, bool isProfessor);
+void parseRequestAndUpdateWithResult(mongoc_client_t *client, mongoc_database_t *database,char *request, char *ans, bool isProfessor);
 //fetches a word from a string, ignoring whitespaces and returns the number of characters read in the original string (including whitespace)
 int fetchWord(char *original, char *word);
 
@@ -25,7 +25,7 @@ mongoc_database_t *getDatabase(mongoc_client_t *client);
 //collection retrieval
 mongoc_collection_t *getCollection(mongoc_client_t *client, char *collName);
 //retrieve a document, given an id and optional attribute
-char *retrieveDocumentWithAttribute(mongoc_client_t *client, mongoc_collection_t *collection, char* user_id, char* attribute, char* value);
+bool retrieveDocumentWithAttribute(char *ans, mongoc_client_t *client, mongoc_collection_t *collection, char* id, char* attribute, char* value, bson_t *opts);
 //return all courses and their infos
 
 //return content of a specific course
@@ -122,30 +122,6 @@ void *connection_handler(void *socket_desc)
     mongoc_client_t *client = createDatabaseClient();
     mongoc_database_t *database = getDatabase(client);
 
-    /*
-    bson_t *command, reply;
-    bson_error_t error;
-    char *str;
-    bool retval;
-
-    command = BCON_NEW ("ping", BCON_INT32 (1));
-
-    retval = mongoc_client_command_simple (
-       client, "admin", command, NULL, &reply, &error);
-
-    if (!retval) {
-       fprintf (stderr, "%s\n", error.message);
-       return EXIT_FAILURE;
-    }
-
-    str = bson_as_json (&reply, NULL);
-    printf ("%s\n", str);
-
-    bson_destroy (&reply);
-    bson_destroy (command);
-    bson_free (str);
-    */
-
     //Send some messages to the client
     strcpy(message, "Welcome to Uniluder's system!");
     write(sock , message , strlen(message));
@@ -178,7 +154,7 @@ void *connection_handler(void *socket_desc)
             strcat(message, "Please type your Academic Registration number:");
         }
         else if(!loggedIn){
-            if(retrieveDocumentWithAttribute(client, getCollection(client, userTypeCollection), client_message, NULL, NULL)) {
+            if(retrieveDocumentWithAttribute(message, client, getCollection(client, userTypeCollection), client_message, NULL, NULL, NULL)) {
                 loggedIn = true;
                 strcpy(user_id, client_message);
 
@@ -191,7 +167,7 @@ void *connection_handler(void *socket_desc)
                 strcpy(message, "Academic Registration number not found in th system. Try again:");
         }
         else if(!informedPassword){
-            if(retrieveDocumentWithAttribute(client, getCollection(client, userTypeCollection), user_id, "password", client_message) != NULL){
+            if(retrieveDocumentWithAttribute(message, client, getCollection(client, userTypeCollection), user_id, "password", client_message, NULL)){
                 informedPassword = true;
                 strcpy(message, "You are now logged in! For a list of available commands, type 'help'");
             } else{
@@ -205,7 +181,7 @@ void *connection_handler(void *socket_desc)
             }
             else{
                 //parse user's request and return the value of a mongo query to user
-                parseRequestAndUpdateWithResult(client_message, message, isProfessor);
+                parseRequestAndUpdateWithResult(client, database, client_message, message, isProfessor);
             }
         }
         write(sock, message, strlen(message));
@@ -228,27 +204,29 @@ void *connection_handler(void *socket_desc)
 }
 
 /*
-Returns a string with the value of a document wanted in a given collection with a known ID and attribute value
+Populates a string with the value of a document wanted in a given collection with a known ID and attribute value. Returns a boolean indicating success
 */
-char *retrieveDocumentWithAttribute(mongoc_client_t *client, mongoc_collection_t *collection, char* user_id, char* attribute, char* value)
+bool retrieveDocumentWithAttribute(char *ans, mongoc_client_t *client, mongoc_collection_t *collection, char* id, char* attribute, char* value, bson_t *opts)
 {
     bson_error_t error;
     mongoc_cursor_t *cursor;
     bson_t *filter = bson_new();
     const bson_t *doc;
-    bool success;
-    char *ans;
+    bool success = false;
 
     /* Find document with specific ID and attribute's value */
-    BSON_APPEND_UTF8 (filter, "_id", user_id);
+    if(id!=NULL)
+        BSON_APPEND_UTF8 (filter, "_id", id);
     if(attribute != NULL)
         BSON_APPEND_UTF8 (filter, attribute, value);
 
-    cursor = mongoc_collection_find_with_opts(collection, filter, NULL, NULL);
+    cursor = mongoc_collection_find_with_opts(collection, filter, opts, NULL);
 
     //since we are searching with an ID, only one answer at most can be retrieved
-    if(mongoc_cursor_next (cursor, &doc)){
-        ans = bson_as_canonical_extended_json (doc, NULL);
+    ans[0] = '\0';
+    while(mongoc_cursor_next (cursor, &doc)){
+        strcat(ans, bson_as_canonical_extended_json (doc, NULL));
+        success = true;
     }
 
     if(mongoc_cursor_error (cursor, &error))
@@ -257,7 +235,7 @@ char *retrieveDocumentWithAttribute(mongoc_client_t *client, mongoc_collection_t
     mongoc_cursor_destroy (cursor);
     bson_destroy (filter);
 
-    return ans;
+    return success;
 }
 /*
   Will retrieve database
@@ -326,7 +304,7 @@ void listAvailableCommands(char *help, bool isProfessor){
 /*
 Parses user's request and updates its contents with its result
 */
-void parseRequestAndUpdateWithResult(char *request, char *ans, bool isProfessor) {
+void parseRequestAndUpdateWithResult(mongoc_client_t *client, mongoc_database_t *database, char *request, char *ans, bool isProfessor) {
     //list command
     char command[200];
     int startNextWord;
@@ -337,27 +315,65 @@ void parseRequestAndUpdateWithResult(char *request, char *ans, bool isProfessor)
     // puts(command);
 
     if(strcmp(command, "list") == 0){
+        //gets course collection from db
+        mongoc_collection_t *collection = getCollection(client, "course");
+        //only gets title and _id from courses
+        bson_t *opts = BCON_NEW("projection", "{", "_id", BCON_BOOL(true), "title", BCON_BOOL(true), "}");
+
+        //request to list all courses
         if(strcmp(request+startNextWord, "all") == 0){
-            //request to list all
-        } else if(request[startNextWord]!='\0'){
-            //request to list this course
+            retrieveDocumentWithAttribute(ans, client, collection, NULL, NULL, NULL, opts);
+
+            //make ans pretty
+        }
+        //request to list a specific course
+        else if(request[startNextWord]!='\0'){
+            if(retrieveDocumentWithAttribute(ans, client, collection, request+startNextWord, NULL, NULL, opts)){
+                //make ans pretty
+            } else
+                strcpy(ans, "No courses found with given course code.");
         } else
             invalid = true;
+
+        bson_destroy(opts);
     }
     //content command
     else if(strcmp(command, "content") == 0){
         if(request[startNextWord]!='\0'){
+            //gets course collection from db
+            mongoc_collection_t *collection = getCollection(client, "course");
+            //only gets title and _id from courses
+            bson_t *opts = BCON_NEW("projection", "{", "content", BCON_BOOL(true), "_id", BCON_BOOL(false) , "}");
 
+            if(retrieveDocumentWithAttribute(ans, client, collection, request+startNextWord, NULL, NULL, opts)){
+                //make ans pretty
+            } else
+                strcpy(ans, "No courses found with given course code.");
+            bson_destroy(opts);
         }
         else
             invalid = true;
     }
     //detail command
     else if(strcmp(command, "detail") == 0){
+
+        //gets course collection from db
+        mongoc_collection_t *collection = getCollection(client, "course");
+
+        //request to detail all
         if(strcmp(request+startNextWord, "all") == 0){
-            //request to detail  all
-        } else if(request[startNextWord]!='\0'){
-            //request to detail this course
+            retrieveDocumentWithAttribute(ans, client, collection, NULL, NULL, NULL, NULL);
+
+            //make ans pretty
+        }
+        //request to detail specific course
+        else if(request[startNextWord]!='\0'){
+            if(retrieveDocumentWithAttribute(ans, client, collection, request+startNextWord, NULL, NULL, NULL)){
+                //make ans pretty
+            }
+            else
+                strcpy(ans, "No courses found with given course code.");
+
         } else
             invalid = true;
     }
@@ -370,11 +386,24 @@ void parseRequestAndUpdateWithResult(char *request, char *ans, bool isProfessor)
 
             //request to show remarks
             if(request[startNextWord] == '\0'){
+                //gets course collection from db
+                mongoc_collection_t *collection = getCollection(client, "course");
+                //only gets title and _id from courses
+                bson_t *opts = BCON_NEW("projection", "{", "comments", BCON_BOOL(true), "_id", BCON_BOOL(false), "}");
 
+                if(retrieveDocumentWithAttribute(ans, client, collection, course, NULL, NULL, opts)){
+                    //make ans pretty
+                }
+                else
+                    strcpy(ans, "No comments found for given course.");
+                bson_destroy(opts);
             }
             //request to write a remark
             else if (isProfessor){
+                //gets course collection from db
+                mongoc_collection_t *collection = getCollection(client, "course");
 
+                //create new comment on given course
             }
             else
                 invalid = true;
