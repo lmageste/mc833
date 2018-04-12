@@ -33,13 +33,13 @@ main (int argc, char *argv[])
     * Register the application name so we can track it in the profile logs
     * on the server. This can also be done from the URI (see other examples).
     */
-   mongoc_client_set_appname (client, "connect-example");
+   mongoc_client_set_appname (client, "tcp-login");
 
    /*
     * Get a handle on the database "db_name" and collection "coll_name"
     */
-   database = mongoc_client_get_database (client, "db_name");
-   collection = mongoc_client_get_collection (client, "db_name", "coll_name");
+   database = mongoc_client_get_database (client, "tcp");
+   collection = mongoc_client_get_collection (client, "tcp", "coll_name");
 
    /*
     * Do work. This example pings the database, prints the result as JSON and

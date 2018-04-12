@@ -43,14 +43,14 @@ int main(int argc , char *argv[])
       }
       server_reply[read_size] = '\0';
 
-      puts("Server reply :");
+      puts("Server reply:");
       puts(server_reply);
     }
 
     //keep communicating with server
     while(1)
     {
-        printf("Enter message : ");
+        printf("Enter message: ");
         fgets(message, sizeof(message), stdin);
         // scanf("%s" , message);
 
@@ -69,7 +69,7 @@ int main(int argc , char *argv[])
         }
         server_reply[read_size] = '\0';
 
-        puts("Server reply :");
+        puts("Server reply:");
         puts(server_reply);
     }
 
