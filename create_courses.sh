@@ -97,7 +97,6 @@ db.course.insert([
   idProfessor: 'RA4',
   comments: [
   {
-    user: 'RA4',
     message: 'Bem-vindos à disciplina de Laboratório de Redes!',
     date_created: new Date(2018, 2, 10, 9, 15)
   }]
@@ -120,7 +119,6 @@ db.course.insert([
   idProfessor: 'RA4',
   comments: [
   {
-    user: 'RA4',
     message: 'Bem-vindos à disciplina de Algoritmos!',
     date_created: new Date(2018, 2, 1, 12, 0)
   }]
@@ -143,7 +141,6 @@ db.course.insert([
   idProfessor: 'RA3',
   comments: [
   {
-    user: 'RA3',
     message: 'Bem-vindos à disciplina de Física Experimental!',
     date_created: new Date(2018, 2, 22, 18, 34)
   }]

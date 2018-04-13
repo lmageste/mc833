@@ -6,6 +6,8 @@
 #include<unistd.h>    //write
 #include<pthread.h> //for threading , link with lpthread
 
+#include <time.h>
+
 #include<mongoc.h> //for mongodb database
 
 //the thread function
@@ -13,7 +15,7 @@ void *connection_handler(void *);
 //A string is modified to display a list of available commands to the user
 void listAvailableCommands(char *help, bool isProfessor);
 //parses user's request and updates its contents with its result
-void parseRequestAndUpdateWithResult(mongoc_client_t *client, mongoc_database_t *database,char *request, char *ans, bool isProfessor);
+void parseRequestAndUpdateWithResult(char *ans, mongoc_client_t *client, mongoc_database_t *database, char *request, bool isProfessor, char *userID);
 //fetches a word from a string, ignoring whitespaces and returns the number of characters read in the original string (including whitespace)
 int fetchWord(char *original, char *word);
 
@@ -25,7 +27,7 @@ mongoc_database_t *getDatabase(mongoc_client_t *client);
 //collection retrieval
 mongoc_collection_t *getCollection(mongoc_client_t *client, char *collName);
 //retrieve a document, given an id and optional attribute
-bool retrieveDocumentWithAttribute(char *ans, mongoc_client_t *client, mongoc_collection_t *collection, bson_t* filter, bson_t *opts);
+bool retrieveDocument(char *ans, mongoc_client_t *client, mongoc_collection_t *collection, bson_t* filter, bson_t *opts);
 //return all courses and their infos
 
 //return content of a specific course
@@ -108,7 +110,7 @@ void *connection_handler(void *socket_desc)
     //Get the socket descriptor
     int sock = *(int*)socket_desc;
     int read_size;
-    char message[2000] , client_message[2000], user_id[7];
+    char message[2000] , client_message[2000], userID[7];
     char *userTypeCollection = "student";
     bool isProfessor = false,
         error = false,
@@ -154,9 +156,9 @@ void *connection_handler(void *socket_desc)
         }
         else if(!loggedIn){
             bson_t *filter = BCON_NEW("_id", client_message);
-            if(retrieveDocumentWithAttribute(message, client, getCollection(client, userTypeCollection), filter, NULL)) {
+            if(retrieveDocument(message, client, getCollection(client, userTypeCollection), filter, NULL)) {
                 loggedIn = true;
-                strcpy(user_id, client_message);
+                strcpy(userID, client_message);
 
                 if(!isProfessor)
                     strcpy(message, "You are now logged in! For a list of available commands, type 'help'");
@@ -168,8 +170,8 @@ void *connection_handler(void *socket_desc)
             bson_destroy(filter);
         }
         else if(!informedPassword){
-            bson_t *filter = BCON_NEW("_id", user_id, "password", client_message);
-            if(retrieveDocumentWithAttribute(message, client, getCollection(client, userTypeCollection), filter, NULL)){
+            bson_t *filter = BCON_NEW("_id", userID, "password", client_message);
+            if(retrieveDocument(message, client, getCollection(client, userTypeCollection), filter, NULL)){
                 informedPassword = true;
                 strcpy(message, "You are now logged in! For a list of available commands, type 'help'");
             } else
@@ -183,7 +185,7 @@ void *connection_handler(void *socket_desc)
             }
             else{
                 //parse user's request and return the value of a mongo query to user
-                parseRequestAndUpdateWithResult(client, database, client_message, message, isProfessor);
+                parseRequestAndUpdateWithResult(message, client, database, client_message, isProfessor, userID);
             }
         }
         write(sock, message, strlen(message));
@@ -204,11 +206,38 @@ void *connection_handler(void *socket_desc)
 
     return 0;
 }
+/*
+Populates a string with the value of document(s) wanted after being updated in a given collection. Returns a boolean indicating if update was successful.
+*/
+bool updateDocument(char *ans, mongoc_client_t *client, mongoc_collection_t *collection, bson_t *filter, bson_t *update){
+    mongoc_find_and_modify_opts_t *opts;
+    bson_t reply;
+    bson_error_t error;
+    bool success;
+
+    opts = mongoc_find_and_modify_opts_new ();
+    mongoc_find_and_modify_opts_set_update (opts, update);
+    mongoc_find_and_modify_opts_set_flags (opts, MONGOC_FIND_AND_MODIFY_RETURN_NEW);
+
+    success = mongoc_collection_find_and_modify_with_opts (
+    collection, filter, opts, &reply, &error);
+    if (success) {
+        strcpy(ans, bson_as_canonical_extended_json(&reply, NULL));
+    } else {
+        fprintf (
+           stderr, "Got error: \"%s\" on line %d\n", error.message, __LINE__);
+    }
+
+    bson_destroy(&reply);
+    mongoc_find_and_modify_opts_destroy(opts);
+
+    return success;
+}
 
 /*
-Populates a string with the value of a document wanted in a given collection with a known ID and attribute value. Returns a boolean indicating success
+Populates a string with the value of document(s) wanted in a given collection with. Returns a boolean indicating success
 */
-bool retrieveDocumentWithAttribute(char *ans, mongoc_client_t *client, mongoc_collection_t *collection, bson_t *filter, bson_t *opts)
+bool retrieveDocument(char *ans, mongoc_client_t *client, mongoc_collection_t *collection, bson_t *filter, bson_t *opts)
 {
     bson_error_t error;
     mongoc_cursor_t *cursor;
@@ -306,7 +335,7 @@ void listAvailableCommands(char *help, bool isProfessor){
 /*
 Parses user's request and updates its contents with its result
 */
-void parseRequestAndUpdateWithResult(mongoc_client_t *client, mongoc_database_t *database, char *request, char *ans, bool isProfessor) {
+void parseRequestAndUpdateWithResult(char *ans, mongoc_client_t *client, mongoc_database_t *database, char *request, bool isProfessor, char *userID) {
     //list command
     char command[200];
     int startNextWord;
@@ -360,21 +389,40 @@ void parseRequestAndUpdateWithResult(mongoc_client_t *client, mongoc_database_t 
 
     }
     //write command
-    else if(strcmp(command, "write") == 0){
+    else if(strcmp(command, "write") == 0 && isProfessor){
         char course[100];
-        int charCount;
-        startNextWord += fetchWord(request+startNextWord, course);
-        //write a remark
-        if(request[startNextWord] != '\0'){
+        int charCount, startMessage;
+        //gets message
+        startMessage = startNextWord+fetchWord(request+startNextWord, course);
+        request[startMessage-1] = '\0';
+        //writes a comment
+        if(request[startMessage] != '\0'){
             //gets course collection from db
             collection = getCollection(client, "course");
-            //only gets title and _id from courses
-            opts = BCON_NEW("projection", "{", "comments", BCON_BOOL(true), "_id", BCON_BOOL(false), "}");
-            //filters a specific course
-            filter = BCON_NEW("_id", request+startNextWord);
-            //insert new element in field's set
+            //filters a specific course that this professor teaches
+            filter = BCON_NEW("_id", request+startNextWord, "idProfessor", userID);
+            puts("os parametros sao:");
+            puts(request+startNextWord);
+            puts(request+startMessage);
+            puts(userID);
+            //adds new message to the message set
+            update = bson_new();
+            bson_t *comment = bson_new();
+            bson_t *msg = bson_new();
+            BSON_APPEND_DOCUMENT_BEGIN(update, "$addToSet", comment);
+            //comment BSON
+            BSON_APPEND_DOCUMENT_BEGIN(comment, "comments", msg);
+            //message BSON
+            BSON_APPEND_UTF8(msg, "message", request+startMessage);
+            time_t t = time(NULL);
+            struct tm now = *localtime(&t);
+            BSON_APPEND_DATE_TIME(msg, "date", mktime (&now) * 1000);
+            //finish appending
+            bson_append_document_end(comment, msg);
+            bson_append_document_end(update, comment);
 
-            //TO-DO
+            bson_destroy(comment);
+            bson_destroy(msg);
         }
         else
             invalid = true;
@@ -384,8 +432,15 @@ void parseRequestAndUpdateWithResult(mongoc_client_t *client, mongoc_database_t 
 
     if(invalid)
         strcpy(ans, "Invalid Command. Type 'help' for a list of available commands.");
-    else if(!retrieveDocumentWithAttribute(ans, client, collection, filter, opts))
+    else if(update!=NULL){
+        //insert new element in field's set
+        if(!updateDocument(ans, client, collection, filter, update))
+            strcpy(ans, "Course not found or you are not the course's professor.");
+    }
+    else if(!retrieveDocument(ans, client, collection, filter, opts)){
         strcpy(ans, "No entries found.");
+    }
+
 
     //free memory
     if(opts)
