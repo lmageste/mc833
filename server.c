@@ -222,7 +222,21 @@ bool updateDocument(char *ans, mongoc_client_t *client, mongoc_collection_t *col
     success = mongoc_collection_find_and_modify_with_opts (
     collection, filter, opts, &reply, &error);
     if (success) {
-        strcpy(ans, bson_as_canonical_extended_json(&reply, NULL));
+        bson_iter_t iter;
+        bson_iter_init(&iter, &reply);
+        bson_iter_find(&iter, "value");
+        const bson_value_t *foundVal = bson_iter_value(&iter);
+        //unable to fetch document
+        if(foundVal->value_type == BSON_TYPE_NULL)
+            success = false;
+        //document fetched, so return the document which was changed
+        else if(foundVal->value_type == BSON_TYPE_DOCUMENT){
+            bson_t *val = bson_new_from_data(foundVal->value.v_doc.data, foundVal->value.v_doc.data_len);
+            strcpy(ans, bson_as_canonical_extended_json(val, NULL));
+            bson_destroy(val);
+        }
+        else //for some other reason
+            success = false;
     } else {
         fprintf (
            stderr, "Got error: \"%s\" on line %d\n", error.message, __LINE__);
@@ -436,11 +450,12 @@ void parseRequestAndUpdateWithResult(char *ans, mongoc_client_t *client, mongoc_
         //insert new element in field's set
         if(!updateDocument(ans, client, collection, filter, update))
             strcpy(ans, "Course not found or you are not the course's professor.");
+        else
+            strcpy(ans, "Message sent successfully!");
     }
     else if(!retrieveDocument(ans, client, collection, filter, opts)){
         strcpy(ans, "No entries found.");
     }
-
 
     //free memory
     if(opts)
@@ -449,7 +464,6 @@ void parseRequestAndUpdateWithResult(char *ans, mongoc_client_t *client, mongoc_
         bson_destroy(filter);
     if(update)
         bson_destroy(update);
-
 
     return;
 }
