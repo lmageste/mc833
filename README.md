@@ -15,7 +15,11 @@ http://mongoc.org/libmongoc/current/tutorial.html#include-and-link-libmongoc-in-
  - Create your own database in mongo (in *create_courses.sh* there are some commands to create a very small database)
 
  - Compile the C files (*sever.c* and *client.c*), linking the *libmongo.c* library to compilation.
-
+   ```
+   gcc -o client client.c $(pkg-config --libs --cflags libmongoc-1.0)
+   gcc -pthread -o server server.c $(pkg-config --libs --cflags libmongoc-1.0)
+   ```
+  
  - Initiate your MongoDB server before running any file:
  > $ mongod
 
