@@ -1,14 +1,14 @@
-#include<stdio.h>
-#include<string.h>    //strlen
-#include<stdlib.h>    //strlen
-#include<sys/socket.h>
-#include<arpa/inet.h> //inet_addr
-#include<unistd.h>    //write
-#include<pthread.h> //for threading , link with lpthread
+#include <stdio.h>
+#include <string.h>    //strlen
+#include <stdlib.h>    //strlen
+#include <sys/socket.h>
+#include <arpa/inet.h> //inet_addr
+#include <unistd.h>    //write
+#include <pthread.h> //for threading , link with lpthread
 
 #include <time.h>
 
-#include<mongoc.h> //for mongodb database
+#include <mongoc.h> //for mongodb database
 
 //the thread function
 void *connection_handler(void *);
@@ -110,13 +110,15 @@ void *connection_handler(void *socket_desc)
     //Get the socket descriptor
     int sock = *(int*)socket_desc;
     int read_size;
-    char message[2000] , client_message[2000], userID[7];
+    char message[5000] , client_message[2000], userID[7];
     char *userTypeCollection = "student";
     bool isProfessor = false,
         error = false,
         firstContact = false,
         loggedIn = false,
         informedPassword = true;
+    clock_t start, end;
+    char timestr[5000];
 
     /*
      * mongoDB
@@ -185,7 +187,13 @@ void *connection_handler(void *socket_desc)
             }
             else{
                 //parse user's request and return the value of a mongo query to user
+                start = clock();
                 parseRequestAndUpdateWithResult(message, client, database, client_message, isProfessor, userID);
+                end = clock();
+
+                sprintf(timestr, "%ld", end-start);
+                strcpy(timestr, strcat(timestr, " - "));
+                strcpy(message, strcat(timestr, message));
             }
         }
         write(sock, message, strlen(message));
@@ -276,6 +284,7 @@ bool retrieveDocument(char *ans, mongoc_client_t *client, mongoc_collection_t *c
         fprintf (stderr, "An error occurred: %s\n", error.message);
 
     mongoc_cursor_destroy (cursor);
+
     return success;
 }
 /*
@@ -314,7 +323,7 @@ mongoc_client_t *createDatabaseClient(){
    * Register the application name so we can track it in the profile logs
    * on the server. This can also be done from the URI (see other examples).
    */
-  mongoc_client_set_appname (client, "tcp-login");
+  //mongoc_client_set_appname (client, "tcp-login");
 
   return client;
 }

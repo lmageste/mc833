@@ -1,16 +1,27 @@
 /*
     C ECHO client example using sockets
 */
-#include<stdio.h> //printf
-#include<string.h>    //strlen
-#include<sys/socket.h>    //socket
-#include<arpa/inet.h> //inet_addr
+#include <stdio.h> //printf
+#include <string.h>    //strlen
+#include <sys/socket.h>    //socket
+#include <arpa/inet.h> //inet_addr
+#include <time.h>
+
+long int getTime(char response[]);
 
 int main(int argc , char *argv[])
 {
     int sock, read_size;
     struct sockaddr_in server;
-    char message[1000] , server_reply[2000];
+    char message[1000] , server_reply[5000];
+    clock_t start, end;
+    char fname[64];
+
+    printf("Type the file name:\n");
+    scanf("%s", fname);
+    fgetc(stdin);
+
+    FILE *f = fopen(strcat(fname, ".txt"), "w");
 
     //Create socket
     sock = socket(AF_INET , SOCK_STREAM , 0);
@@ -34,9 +45,9 @@ int main(int argc , char *argv[])
     puts("Connected\n");
 
     //gets server confirmation messages
-    for (int i = 0; i < 2; i++) {
+    for (int i = 0; i < 1; i++) {
       //Receive a reply from the server
-      if( (read_size = recv(sock , server_reply , 2000 , 0)) < 0)
+      if( (read_size = recv(sock , server_reply , 5000 , 0)) < 0)
       {
           puts("recv failed");
           break;
@@ -52,8 +63,11 @@ int main(int argc , char *argv[])
     {
         printf("Enter message: ");
         fgets(message, sizeof(message), stdin);
-        // scanf("%s" , message);
 
+        if(strcmp(message, "stop\n") == 0)
+            break;
+
+        start = clock();
         //Send some data
         if( send(sock , message , strlen(message) , 0) < 0)
         {
@@ -62,17 +76,35 @@ int main(int argc , char *argv[])
         }
 
         //Receive a reply from the server
-        if( (read_size = recv(sock , server_reply , 2000 , 0)) < 0)
+        if( (read_size = recv(sock , server_reply , 5000 , 0)) < 0)
         {
             puts("recv failed");
             break;
         }
+
+        //Write time in file
+        end = clock();
+
         server_reply[read_size] = '\0';
+
+        fprintf(f, strcat(strcat(message, "Time taken: %ld\n"), "Server processing: %ld\n"), end-start, getTime(server_reply));
 
         puts("Server reply:");
         puts(server_reply);
     }
 
+    fclose(f);
     close(sock);
     return 0;
+}
+
+long int getTime(char response[]){
+    long int res = 0;
+
+    for(int i = 0;response[i] >= '0' && response[i] <= '9';i++){
+        res = res*10;
+        res = res + response[i] - '0';
+    }
+
+    return res;
 }
