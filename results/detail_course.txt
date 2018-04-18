@@ -1,0 +1,150 @@
+detail MC833
+Time taken: 5314
+Server processing: 976
+detail MC833
+Time taken: 2598
+Server processing: 903
+detail MC833
+Time taken: 2433
+Server processing: 838
+detail MC833
+Time taken: 2598
+Server processing: 895
+detail MC833
+Time taken: 3289
+Server processing: 1077
+detail MC833
+Time taken: 2631
+Server processing: 913
+detail MC833
+Time taken: 2190
+Server processing: 630
+detail MC833
+Time taken: 2623
+Server processing: 907
+detail MC833
+Time taken: 12044
+Server processing: 918
+detail MC833
+Time taken: 3393
+Server processing: 875
+detail MC833
+Time taken: 2541
+Server processing: 830
+detail MC833
+Time taken: 2596
+Server processing: 861
+detail MC833
+Time taken: 2514
+Server processing: 821
+detail MC833
+Time taken: 4385
+Server processing: 841
+detail MC833
+Time taken: 3016
+Server processing: 905
+detail MC833
+Time taken: 2562
+Server processing: 863
+detail MC833
+Time taken: 7436
+Server processing: 836
+detail MC833
+Time taken: 76616
+Server processing: 867
+detail MC833
+Time taken: 2508
+Server processing: 865
+detail MC833
+Time taken: 2567
+Server processing: 837
+detail MC833
+Time taken: 5804
+Server processing: 869
+detail MC833
+Time taken: 162997
+Server processing: 869
+detail MC833
+Time taken: 3107
+Server processing: 626
+detail MC833
+Time taken: 2619
+Server processing: 912
+detail MC833
+Time taken: 2994
+Server processing: 1230
+detail MC833
+Time taken: 2500
+Server processing: 849
+detail MC833
+Time taken: 2772
+Server processing: 878
+detail MC833
+Time taken: 2641
+Server processing: 887
+detail MC833
+Time taken: 46625
+Server processing: 652
+detail MC833
+Time taken: 2606
+Server processing: 678
+detail MC833
+Time taken: 2426
+Server processing: 805
+detail MC833
+Time taken: 2671
+Server processing: 994
+detail MC833
+Time taken: 2031
+Server processing: 466
+detail MC833
+Time taken: 3070
+Server processing: 902
+detail MC833
+Time taken: 2630
+Server processing: 865
+detail MC833
+Time taken: 4819
+Server processing: 943
+detail MC833
+Time taken: 2546
+Server processing: 908
+detail MC833
+Time taken: 34608
+Server processing: 860
+detail MC833
+Time taken: 2559
+Server processing: 859
+detail MC833
+Time taken: 2622
+Server processing: 989
+detail MC833
+Time taken: 2658
+Server processing: 914
+detail MC833
+Time taken: 4369
+Server processing: 892
+detail MC833
+Time taken: 4609
+Server processing: 934
+detail MC833
+Time taken: 2549
+Server processing: 921
+detail MC833
+Time taken: 5060
+Server processing: 985
+detail MC833
+Time taken: 3743
+Server processing: 874
+detail MC833
+Time taken: 4299
+Server processing: 832
+detail MC833
+Time taken: 2859
+Server processing: 1237
+detail MC833
+Time taken: 2315
+Server processing: 720
+detail MC833
+Time taken: 2713
+Server processing: 1031

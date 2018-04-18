@@ -1,0 +1,150 @@
+list all
+Time taken: 3391
+Server processing: 1307
+list all
+Time taken: 2477
+Server processing: 1045
+list all
+Time taken: 4507
+Server processing: 883
+list all
+Time taken: 5090
+Server processing: 932
+list all
+Time taken: 2554
+Server processing: 912
+list all
+Time taken: 2663
+Server processing: 919
+list all
+Time taken: 2582
+Server processing: 917
+list all
+Time taken: 2363
+Server processing: 808
+list all
+Time taken: 5804
+Server processing: 1104
+list all
+Time taken: 2614
+Server processing: 1012
+list all
+Time taken: 2539
+Server processing: 891
+list all
+Time taken: 2234
+Server processing: 590
+list all
+Time taken: 3185
+Server processing: 969
+list all
+Time taken: 2562
+Server processing: 901
+list all
+Time taken: 2481
+Server processing: 908
+list all
+Time taken: 3980
+Server processing: 949
+list all
+Time taken: 4501
+Server processing: 1225
+list all
+Time taken: 2849
+Server processing: 1241
+list all
+Time taken: 2558
+Server processing: 952
+list all
+Time taken: 2783
+Server processing: 769
+list all
+Time taken: 18485
+Server processing: 964
+list all
+Time taken: 4005
+Server processing: 924
+list all
+Time taken: 2614
+Server processing: 976
+list all
+Time taken: 8264
+Server processing: 1351
+list all
+Time taken: 2887
+Server processing: 913
+list all
+Time taken: 2477
+Server processing: 902
+list all
+Time taken: 3421
+Server processing: 746
+list all
+Time taken: 3925
+Server processing: 968
+list all
+Time taken: 2431
+Server processing: 757
+list all
+Time taken: 2489
+Server processing: 897
+list all
+Time taken: 2496
+Server processing: 880
+list all
+Time taken: 16432
+Server processing: 875
+list all
+Time taken: 2588
+Server processing: 968
+list all
+Time taken: 2441
+Server processing: 879
+list all
+Time taken: 2544
+Server processing: 791
+list all
+Time taken: 3520
+Server processing: 971
+list all
+Time taken: 2879
+Server processing: 1330
+list all
+Time taken: 2603
+Server processing: 928
+list all
+Time taken: 7106
+Server processing: 970
+list all
+Time taken: 2930
+Server processing: 1196
+list all
+Time taken: 5407
+Server processing: 897
+list all
+Time taken: 3941
+Server processing: 1003
+list all
+Time taken: 2860
+Server processing: 1136
+list all
+Time taken: 4929
+Server processing: 1028
+list all
+Time taken: 3657
+Server processing: 950
+list all
+Time taken: 57366
+Server processing: 920
+list all
+Time taken: 6024
+Server processing: 895
+list all
+Time taken: 5019
+Server processing: 925
+list all
+Time taken: 4766
+Server processing: 950
+list all
+Time taken: 26498
+Server processing: 730

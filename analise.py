@@ -10,7 +10,7 @@ def mean_confidence_interval(data, confidence=0.95):
     h = se * sp.stats.t._ppf((1+confidence)/2., n-1)
     return m, h, m-h, m+h
 
-files = ["teste.txt", "fun2.txt", "fun3.txt", "fun4.txt", "fun5.txt", "fun6.txt"]
+files = ["results/content_course.txt", "results/content_all_courses.txt", "results/detail_course.txt", "results/list_course.txt", "results/list_all_courses.txt", "results/remark_course.txt", "results/write_remark.txt"]
 
 for file in files:
 	totalExecution = []

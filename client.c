@@ -32,7 +32,7 @@ int main(int argc , char *argv[])
     }
     puts("Socket created");
 
-    server.sin_addr.s_addr = inet_addr("127.0.0.1");
+    server.sin_addr.s_addr = inet_addr("192.168.0.183");
     server.sin_family = AF_INET;
     server.sin_port = htons( 8888 );
 
@@ -46,7 +46,7 @@ int main(int argc , char *argv[])
     puts("Connected\n");
 
     //gets server confirmation messages
-    for (int i = 0; i < 1; i++) {
+    for (int i = 0; i < 2; i++) {
       //Receive a reply from the server
       if( (read_size = recv(sock , server_reply , 5000 , 0)) < 0)
       {
@@ -86,6 +86,7 @@ int main(int argc , char *argv[])
         //Write time in file
         gettimeofday(&tv2, NULL);
         server_reply[read_size] = '\0';
+	
         fprintf(f, strcat(strcat(message, "Time taken: %ld\n"), "Server processing: %ld\n"),
                 tv2.tv_usec-tv1.tv_usec, getTime(server_reply));
 
