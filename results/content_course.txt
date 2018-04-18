@@ -56,9 +56,6 @@ content MC833
 Time taken: 20479
 Server processing: 375
 content MC833
-Time taken: -995709
-Server processing: 859
-content MC833
 Time taken: 2383
 Server processing: 868
 content MC833
@@ -139,9 +136,6 @@ Server processing: 927
 content MC833
 Time taken: 2311
 Server processing: 689
-content MC833
-Time taken: -977123
-Server processing: 943
 content MC833
 Time taken: 4837
 Server processing: 663
