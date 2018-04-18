@@ -6,7 +6,7 @@
 #include <unistd.h>    //write
 #include <pthread.h> //for threading , link with lpthread
 
-#include <time.h>
+#include <sys/time.h>
 
 #include <mongoc.h> //for mongodb database
 
@@ -117,7 +117,7 @@ void *connection_handler(void *socket_desc)
         firstContact = false,
         loggedIn = false,
         informedPassword = true;
-    clock_t start, end;
+    struct timeval tv1, tv2;
     char timestr[5000];
 
     /*
@@ -187,16 +187,18 @@ void *connection_handler(void *socket_desc)
             }
             else{
                 //parse user's request and return the value of a mongo query to user
-                start = clock();
+                gettimeofday(&tv1, NULL);
                 parseRequestAndUpdateWithResult(message, client, database, client_message, isProfessor, userID);
-                end = clock();
+                gettimeofday(&tv2, NULL);
 
-                sprintf(timestr, "%ld", end-start);
+                sprintf(timestr, "%ld", tv2.tv_usec-tv1.tv_usec);
                 strcpy(timestr, strcat(timestr, " - "));
                 strcpy(message, strcat(timestr, message));
             }
         }
         write(sock, message, strlen(message));
+
+        fflush(stdin);
     }
 
     if(read_size == 0)

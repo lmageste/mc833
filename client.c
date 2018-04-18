@@ -5,7 +5,7 @@
 #include <string.h>    //strlen
 #include <sys/socket.h>    //socket
 #include <arpa/inet.h> //inet_addr
-#include <time.h>
+#include <sys/time.h>
 
 long int getTime(char response[]);
 
@@ -16,6 +16,7 @@ int main(int argc , char *argv[])
     char message[1000] , server_reply[5000];
     clock_t start, end;
     char fname[64];
+    struct timeval tv1, tv2;
 
     printf("Type the file name:\n");
     scanf("%s", fname);
@@ -67,7 +68,7 @@ int main(int argc , char *argv[])
         if(strcmp(message, "stop\n") == 0)
             break;
 
-        start = clock();
+        gettimeofday(&tv1, NULL);
         //Send some data
         if( send(sock , message , strlen(message) , 0) < 0)
         {
@@ -83,11 +84,10 @@ int main(int argc , char *argv[])
         }
 
         //Write time in file
-        end = clock();
-
+        gettimeofday(&tv2, NULL);
         server_reply[read_size] = '\0';
-
-        fprintf(f, strcat(strcat(message, "Time taken: %ld\n"), "Server processing: %ld\n"), end-start, getTime(server_reply));
+        fprintf(f, strcat(strcat(message, "Time taken: %ld\n"), "Server processing: %ld\n"),
+                tv2.tv_usec-tv1.tv_usec, getTime(server_reply));
 
         puts("Server reply:");
         puts(server_reply);
