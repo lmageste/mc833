@@ -1,0 +1,153 @@
+detail MC833Total time taken: 13509
+Server processing: 1450
+Connection time: 12059
+detail MC833Total time taken: 13023
+Server processing: 968
+Connection time: 12055
+detail MC833Total time taken: 12854
+Server processing: 717
+Connection time: 12137
+detail MC833Total time taken: 14068
+Server processing: 650
+Connection time: 13418
+detail MC833Total time taken: 13978
+Server processing: 698
+Connection time: 13280
+detail MC833Total time taken: 15676
+Server processing: 1373
+Connection time: 14303
+detail MC833Total time taken: 12649
+Server processing: 684
+Connection time: 11965
+detail MC833Total time taken: 13602
+Server processing: 596
+Connection time: 13006
+detail MC833Total time taken: 12759
+Server processing: 660
+Connection time: 12099
+detail MC833Total time taken: 12811
+Server processing: 1008
+Connection time: 11803
+detail MC833Total time taken: 13705
+Server processing: 700
+Connection time: 13005
+detail MC833Total time taken: 15778
+Server processing: 1297
+Connection time: 14481
+detail MC833Total time taken: 15294
+Server processing: 832
+Connection time: 14462
+detail MC833Total time taken: 13171
+Server processing: 1511
+Connection time: 11660
+detail MC833Total time taken: 12344
+Server processing: 607
+Connection time: 11737
+detail MC833Total time taken: 12645
+Server processing: 655
+Connection time: 11990
+detail MC833Total time taken: 13674
+Server processing: 1266
+Connection time: 12408
+detail MC833Total time taken: 14944
+Server processing: 659
+Connection time: 14285
+detail MC833Total time taken: 12893
+Server processing: 622
+Connection time: 12271
+detail MC833Total time taken: 14949
+Server processing: 636
+Connection time: 14313
+detail MC833Total time taken: 29341
+Server processing: 720
+Connection time: 28621
+detail MC833Total time taken: 12475
+Server processing: 650
+Connection time: 11825
+detail MC833Total time taken: 190518
+Server processing: 659
+Connection time: 189859
+detail MC833Total time taken: 76543
+Server processing: 901
+Connection time: 75642
+detail MC833Total time taken: 144938
+Server processing: 674
+Connection time: 144264
+detail MC833Total time taken: 123893
+Server processing: 1523
+Connection time: 122370
+detail MC833Total time taken: 14593
+Server processing: 917
+Connection time: 13676
+detail MC833Total time taken: -984161
+Server processing: 986
+Connection time: -985147
+detail MC833Total time taken: 11331
+Server processing: 606
+Connection time: 10725
+detail MC833Total time taken: 11797
+Server processing: 684
+Connection time: 11113
+detail MC833Total time taken: 14819
+Server processing: 696
+Connection time: 14123
+detail MC833Total time taken: 13453
+Server processing: 1310
+Connection time: 12143
+detail MC833Total time taken: 14263
+Server processing: 682
+Connection time: 13581
+detail MC833Total time taken: 13903
+Server processing: 635
+Connection time: 13268
+detail MC833Total time taken: 14761
+Server processing: 684
+Connection time: 14077
+detail MC833Total time taken: 12729
+Server processing: 1369
+Connection time: 11360
+detail MC833Total time taken: 15781
+Server processing: 647
+Connection time: 15134
+detail MC833Total time taken: 12926
+Server processing: 625
+Connection time: 12301
+detail MC833Total time taken: -986343
+Server processing: 1179
+Connection time: -987522
+detail MC833Total time taken: 13062
+Server processing: 1476
+Connection time: 11586
+detail MC833Total time taken: 15032
+Server processing: 2040
+Connection time: 12992
+detail MC833Total time taken: 24162
+Server processing: 1238
+Connection time: 22924
+detail MC833Total time taken: 13024
+Server processing: 735
+Connection time: 12289
+detail MC833Total time taken: 14595
+Server processing: 1571
+Connection time: 13024
+detail MC833Total time taken: 15219
+Server processing: 637
+Connection time: 14582
+detail MC833Total time taken: 12604
+Server processing: 1094
+Connection time: 11510
+detail MC833Total time taken: 12051
+Server processing: 802
+Connection time: 11249
+detail MC833Total time taken: 11913
+Server processing: 1525
+Connection time: 10388
+detail MC833Total time taken: 11859
+Server processing: 690
+Connection time: 11169
+detail MC833Total time taken: 12578
+Server processing: 698
+Connection time: 11880
+detail MC833Total time taken: 15907
+Server processing: 1545
+Connection time: 14362
