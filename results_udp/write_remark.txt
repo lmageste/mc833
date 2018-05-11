@@ -1,147 +1,147 @@
-write 1011 senha MC833 aTotal time taken: 8236
+Total time taken: 8236
 Server processing: 2719
 Connection time: 5517
-write 1011 senha MC833 aTotal time taken: 9629
+Total time taken: 9629
 Server processing: 1570
 Connection time: 8059
-write 1011 senha MC833 aTotal time taken: 8833
+Total time taken: 8833
 Server processing: 1573
 Connection time: 7260
-write 1011 senha MC833 aTotal time taken: 8419
+Total time taken: 8419
 Server processing: 1137
 Connection time: 7282
-write 1011 senha MC833 aTotal time taken: 8137
+Total time taken: 8137
 Server processing: 1215
 Connection time: 6922
-write 1011 senha MC833 aTotal time taken: 9567
+Total time taken: 9567
 Server processing: 2656
 Connection time: 6911
-write 1011 senha MC833 aTotal time taken: 5450
+Total time taken: 5450
 Server processing: 1190
 Connection time: 4260
-write 1011 senha MC833 aTotal time taken: 4995
+Total time taken: 4995
 Server processing: 1073
 Connection time: 3922
-write 1011 senha MC833 aTotal time taken: 7406
+Total time taken: 7406
 Server processing: 1484
 Connection time: 5922
-write 1011 senha MC833 aTotal time taken: 7376
+Total time taken: 7376
 Server processing: 1265
 Connection time: 6111
-write 1011 senha MC833 aTotal time taken: 8067
+Total time taken: 8067
 Server processing: 1263
 Connection time: 6804
-write 1011 senha MC833 aTotal time taken: 7868
+Total time taken: 7868
 Server processing: 1488
 Connection time: 6380
-write 1011 senha MC833 aTotal time taken: 9173
+Total time taken: 9173
 Server processing: 1626
 Connection time: 7547
-write 1011 senha MC833 aTotal time taken: 8039
+Total time taken: 8039
 Server processing: 1234
 Connection time: 6805
-write 1011 senha MC833 aTotal time taken: 10019
+Total time taken: 10019
 Server processing: 2237
 Connection time: 7782
-write 1011 senha MC833 aTotal time taken: 7606
+Total time taken: 7606
 Server processing: 939
 Connection time: 6667
-write 1011 senha MC833 aTotal time taken: 12370
+Total time taken: 12370
 Server processing: 2651
 Connection time: 9719
-write 1011 senha MC833 aTotal time taken: 8047
+Total time taken: 8047
 Server processing: 1077
 Connection time: 6970
-write 1011 senha MC833 aTotal time taken: 10523
+Total time taken: 10523
 Server processing: 2317
 Connection time: 8206
-write 1011 senha MC833 aTotal time taken: 12808
+Total time taken: 12808
 Server processing: 2770
 Connection time: 10038
-write 1011 senha MC833 aTotal time taken: 8034
+Total time taken: 8034
 Server processing: 1222
 Connection time: 6812
-write 1011 senha MC833 aTotal time taken: 5432
+Total time taken: 5432
 Server processing: 1269
 Connection time: 4163
-write 1011 senha MC833 aTotal time taken: 7943
+Total time taken: 7943
 Server processing: 1045
 Connection time: 6898
-write 1011 senha MC833 aTotal time taken: 5157
+Total time taken: 5157
 Server processing: 1268
 Connection time: 3889
-write 1011 senha MC833 aTotal time taken: 5238
+Total time taken: 5238
 Server processing: 1266
 Connection time: 3972
-write 1011 senha MC833 aTotal time taken: 10898
+Total time taken: 10898
 Server processing: 2239
 Connection time: 8659
-write 1011 senha MC833 aTotal time taken: 5117
+Total time taken: 5117
 Server processing: 1171
 Connection time: 3946
-write 1011 senha MC833 aTotal time taken: 6224
+Total time taken: 6224
 Server processing: 1292
 Connection time: 4932
-write 1011 senha MC833 aTotal time taken: 8386
+Total time taken: 8386
 Server processing: 1282
 Connection time: 7104
-write 1011 senha MC833 aTotal time taken: 6323
+Total time taken: 6323
 Server processing: 2370
 Connection time: 3953
-write 1011 senha MC833 aTotal time taken: 8814
+Total time taken: 8814
 Server processing: 1941
 Connection time: 6873
-write 1011 senha MC833 aTotal time taken: 8114
+Total time taken: 8114
 Server processing: 1081
 Connection time: 7033
-write 1011 senha MC833 aTotal time taken: 7967
+Total time taken: 7967
 Server processing: 1069
 Connection time: 6898
-write 1011 senha MC833 aTotal time taken: 7582
+Total time taken: 7582
 Server processing: 1208
 Connection time: 6374
-write 1011 senha MC833 aTotal time taken: 9810
+Total time taken: 9810
 Server processing: 2864
 Connection time: 6946
-write 1011 senha MC833 aTotal time taken: 6656
+Total time taken: 6656
 Server processing: 1303
 Connection time: 5353
-write 1011 senha MC833 aTotal time taken: 9425
+Total time taken: 9425
 Server processing: 2642
 Connection time: 6783
-write 1011 senha MC833 aTotal time taken: 8931
+Total time taken: 8931
 Server processing: 2097
 Connection time: 6834
-write 1011 senha MC833 aTotal time taken: 9651
+Total time taken: 9651
 Server processing: 1258
 Connection time: 8393
-write 1011 senha MC833 aTotal time taken: 6586
+Total time taken: 6586
 Server processing: 1331
 Connection time: 5255
-write 1011 senha MC833 aTotal time taken: 9643
+Total time taken: 9643
 Server processing: 2849
 Connection time: 6794
-write 1011 senha MC833 aTotal time taken: 11953
+Total time taken: 11953
 Server processing: 2768
 Connection time: 9185
-write 1011 senha MC833 aTotal time taken: 7914
+Total time taken: 7914
 Server processing: 1090
 Connection time: 6824
-write 1011 senha MC833 aTotal time taken: 8014
+Total time taken: 8014
 Server processing: 1324
 Connection time: 6690
-write 1011 senha MC833 aTotal time taken: 6672
+Total time taken: 6672
 Server processing: 1313
 Connection time: 5359
-write 1011 senha MC833 aTotal time taken: 11197
+Total time taken: 11197
 Server processing: 2831
 Connection time: 8366
-write 1011 senha MC833 aTotal time taken: 6615
+Total time taken: 6615
 Server processing: 2318
 Connection time: 4297
-write 1011 senha MC833 aTotal time taken: 8106
+Total time taken: 8106
 Server processing: 1331
 Connection time: 6775
-write 1011 senha MC833 aTotal time taken: 7960
+Total time taken: 7960
 Server processing: 1314
 Connection time: 6646

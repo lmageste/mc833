@@ -1,150 +1,147 @@
-list allTotal time taken: 6101
+Total time taken: 6101
 Server processing: 466
 Connection time: 5635
-list allTotal time taken: 6371
+Total time taken: 6371
 Server processing: 446
 Connection time: 5925
-list allTotal time taken: 6405
+Total time taken: 6405
 Server processing: 400
 Connection time: 6005
-list allTotal time taken: 8038
+Total time taken: 8038
 Server processing: 377
 Connection time: 7661
-list allTotal time taken: 6338
+Total time taken: 6338
 Server processing: 356
 Connection time: 5982
-list allTotal time taken: 6329
+Total time taken: 6329
 Server processing: 386
 Connection time: 5943
-list allTotal time taken: 9619
+Total time taken: 9619
 Server processing: 668
 Connection time: 8951
-list allTotal time taken: 63945
+Total time taken: 63945
 Server processing: 421
 Connection time: 63524
-list allTotal time taken: 7353
+Total time taken: 7353
 Server processing: 619
 Connection time: 6734
-list allTotal time taken: 6411
+Total time taken: 6411
 Server processing: 640
 Connection time: 5771
-list allTotal time taken: 6292
+Total time taken: 6292
 Server processing: 609
 Connection time: 5683
-list allTotal time taken: 10083
+Total time taken: 10083
 Server processing: 382
 Connection time: 9701
-list allTotal time taken: 6435
+Total time taken: 6435
 Server processing: 408
 Connection time: 6027
-list allTotal time taken: 6306
+Total time taken: 6306
 Server processing: 572
 Connection time: 5734
-list allTotal time taken: 5416
+Total time taken: 5416
 Server processing: 710
 Connection time: 4706
-list allTotal time taken: 10903
+Total time taken: 10903
 Server processing: 378
 Connection time: 10525
-list allTotal time taken: 7962
+Total time taken: 7962
 Server processing: 873
 Connection time: 7089
-list allTotal time taken: 5112
+Total time taken: 5112
 Server processing: 423
 Connection time: 4689
-list allTotal time taken: 9377
+Total time taken: 9377
 Server processing: 435
 Connection time: 8942
-list allTotal time taken: 10139
+Total time taken: 10139
 Server processing: 889
 Connection time: 9250
-list allTotal time taken: 6852
+Total time taken: 6852
 Server processing: 930
 Connection time: 5922
-list allTotal time taken: 6445
+Total time taken: 6445
 Server processing: 882
 Connection time: 5563
-list allTotal time taken: 6428
+Total time taken: 6428
 Server processing: 537
 Connection time: 5891
-list allTotal time taken: 7404
+Total time taken: 7404
 Server processing: 679
 Connection time: 6725
-list allTotal time taken: 8197
+Total time taken: 8197
 Server processing: 396
 Connection time: 7801
-list allTotal time taken: 8211
+Total time taken: 8211
 Server processing: 839
 Connection time: 7372
-list allTotal time taken: 5467
+Total time taken: 5467
 Server processing: 489
 Connection time: 4978
-list allTotal time taken: 6004
+Total time taken: 6004
 Server processing: 396
 Connection time: 5608
-list allTotal time taken: 6517
+Total time taken: 6517
 Server processing: 613
 Connection time: 5904
-list allTotal time taken: 7860
+Total time taken: 7860
 Server processing: 647
 Connection time: 7213
-list allTotal time taken: 6856
+Total time taken: 6856
 Server processing: 509
 Connection time: 6347
-list allTotal time taken: 6383
+Total time taken: 6383
 Server processing: 374
 Connection time: 6009
-list allTotal time taken: 7010
+Total time taken: 7010
 Server processing: 939
 Connection time: 6071
-list allTotal time taken: 6256
+Total time taken: 6256
 Server processing: 365
 Connection time: 5891
-list allTotal time taken: 5211
+Total time taken: 5211
 Server processing: 884
 Connection time: 4327
-list allTotal time taken: 6297
+Total time taken: 6297
 Server processing: 376
 Connection time: 5921
-list allTotal time taken: -992096
-Server processing: 713
-Connection time: -992809
-list allTotal time taken: 8347
+Total time taken: 8347
 Server processing: 660
 Connection time: 7687
-list allTotal time taken: 6314
+Total time taken: 6314
 Server processing: 505
 Connection time: 5809
-list allTotal time taken: 6609
+Total time taken: 6609
 Server processing: 386
 Connection time: 6223
-list allTotal time taken: 6473
+Total time taken: 6473
 Server processing: 634
 Connection time: 5839
-list allTotal time taken: 7680
+Total time taken: 7680
 Server processing: 428
 Connection time: 7252
-list allTotal time taken: 4804
+Total time taken: 4804
 Server processing: 698
 Connection time: 4106
-list allTotal time taken: 4123
+Total time taken: 4123
 Server processing: 361
 Connection time: 3762
-list allTotal time taken: 9330
+Total time taken: 9330
 Server processing: 477
 Connection time: 8853
-list allTotal time taken: 7377
+Total time taken: 7377
 Server processing: 435
 Connection time: 6942
-list allTotal time taken: 8233
+Total time taken: 8233
 Server processing: 932
 Connection time: 7301
-list allTotal time taken: 6380
+Total time taken: 6380
 Server processing: 431
 Connection time: 5949
-list allTotal time taken: 7529
+Total time taken: 7529
 Server processing: 682
 Connection time: 6847
-list allTotal time taken: 6170
+Total time taken: 6170
 Server processing: 477
 Connection time: 5693
