@@ -1,0 +1,156 @@
+Total time taken: 6836
+Server processing: 489
+Connection time: 6347
+Total time taken: 5943
+Server processing: 417
+Connection time: 5526
+Total time taken: 8492
+Server processing: 404
+Connection time: 8088
+Total time taken: 6397
+Server processing: 413
+Connection time: 5984
+Total time taken: 6504
+Server processing: 692
+Connection time: 5812
+Total time taken: 5282
+Server processing: 763
+Connection time: 4519
+Total time taken: 6598
+Server processing: 533
+Connection time: 6065
+Total time taken: 8218
+Server processing: 695
+Connection time: 7523
+Total time taken: 6484
+Server processing: 411
+Connection time: 6073
+Total time taken: 8531
+Server processing: 396
+Connection time: 8135
+Total time taken: 6570
+Server processing: 500
+Connection time: 6070
+Total time taken: 8202
+Server processing: 434
+Connection time: 7768
+Total time taken: 7504
+Server processing: 427
+Connection time: 7077
+Total time taken: 8119
+Server processing: 933
+Connection time: 7186
+Total time taken: 7848
+Server processing: 742
+Connection time: 7106
+Total time taken: 8359
+Server processing: 699
+Connection time: 7660
+Total time taken: 6495
+Server processing: 541
+Connection time: 5954
+Total time taken: 8147
+Server processing: 920
+Connection time: 7227
+Total time taken: 6493
+Server processing: 857
+Connection time: 5636
+Total time taken: 9009
+Server processing: 741
+Connection time: 8268
+Total time taken: 8205
+Server processing: 975
+Connection time: 7230
+Total time taken: 9325
+Server processing: 767
+Connection time: 8558
+Total time taken: 5148
+Server processing: 422
+Connection time: 4726
+Total time taken: 6878
+Server processing: 411
+Connection time: 6467
+Total time taken: 6425
+Server processing: 504
+Connection time: 5921
+Total time taken: 7318
+Server processing: 417
+Connection time: 6901
+Total time taken: 8133
+Server processing: 386
+Connection time: 7747
+Total time taken: 6517
+Server processing: 525
+Connection time: 5992
+Total time taken: 7993
+Server processing: 404
+Connection time: 7589
+Total time taken: 6326
+Server processing: 426
+Connection time: 5900
+Total time taken: 6499
+Server processing: 404
+Connection time: 6095
+Total time taken: 5189
+Server processing: 420
+Connection time: 4769
+Total time taken: 6685
+Server processing: 381
+Connection time: 6304
+Total time taken: 8894
+Server processing: 793
+Connection time: 8101
+Total time taken: 6415
+Server processing: 497
+Connection time: 5918
+Total time taken: 6467
+Server processing: 518
+Connection time: 5949
+Total time taken: 8116
+Server processing: 669
+Connection time: 7447
+Total time taken: 6409
+Server processing: 480
+Connection time: 5929
+Total time taken: 4477
+Server processing: 441
+Connection time: 4036
+Total time taken: 6564
+Server processing: 422
+Connection time: 6142
+Total time taken: 9070
+Server processing: 652
+Connection time: 8418
+Total time taken: 9905
+Server processing: 864
+Connection time: 9041
+Total time taken: 6777
+Server processing: 388
+Connection time: 6389
+Total time taken: 6541
+Server processing: 602
+Connection time: 5939
+Total time taken: 6358
+Server processing: 430
+Connection time: 5928
+Total time taken: 9874
+Server processing: 652
+Connection time: 9222
+Total time taken: 9614
+Server processing: 388
+Connection time: 9226
+Total time taken: 6209
+Server processing: 443
+Connection time: 5766
+Total time taken: 9471
+Server processing: 781
+Connection time: 8690
+Total time taken: 6826
+Server processing: 1049
+Connection time: 5777
+Total time taken: 8111
+Server processing: 1011
+Connection time: 7100
+Total time taken: 6251
+Server processing: 405
+Connection time: 5846
