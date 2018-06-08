@@ -12,6 +12,8 @@ Install MongoDB C driver:
 http://mongoc.org/libmongoc/current/tutorial.html#include-and-link-libmongoc-in-your-c-program
 
 # How to use
+
+## For the C files, using traditional TCP/UDP protocols
  - Create your own database in mongo (in *create_courses.sh* there are some commands to create a very small database)
 
  - Compile the C files (*sever.c* and *client.c*), linking the *libmongo.c* library to compilation.
@@ -24,3 +26,13 @@ http://mongoc.org/libmongoc/current/tutorial.html#include-and-link-libmongoc-in-
  > $ mongod
 
  - Run your files (first *server.out* and then *client.out*) (hopefully with no mistakes :smile:)
+
+## For the java projects, which use Java's RMI
+
+- Import the projects to your favorite IDE
+
+- Run 'RMIServidor/src/SchoolDatabaseServer.java'
+
+- While the above is still running, run simultaneously 'RMICliente/src/SchoolDatabaseClient.java'
+
+- Interact with the console
