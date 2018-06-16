@@ -1,12 +1,15 @@
-import java.rmi.*;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
 import java.util.Scanner; 
  
 public class SchoolDatabaseClient {
 	public static void main (String[] args) {
 		SchoolDatabaseInterface client;
+
 		try {
-  		    //System.setSecurityManager(new RMISecurityManager());
-			client = (SchoolDatabaseInterface)Naming.lookup("rmi://localhost:2020/SchoolServerSide");
+			System.setProperty("java.rmi.server.hostname", "192.168.0.30");
+			Registry registry = LocateRegistry.getRegistry("192.168.0.30");
+			client = (SchoolDatabaseInterface)registry.lookup("SchoolServerzinho");
 			
 			Scanner scan = new Scanner(System.in);
 			
@@ -40,8 +43,11 @@ public class SchoolDatabaseClient {
 				if(line.equals("exit"))
 					break;
 				
+				long t = System.nanoTime();
 				String ans = client.query(line, userType, userID);
-				System.out.println(ans);
+				t = System.nanoTime()-t;
+				System.out.println(ans.split(" ")[0]);
+				System.out.println(Long.toString(t));
 			}
 			
 			//the end

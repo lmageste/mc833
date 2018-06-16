@@ -29,6 +29,11 @@ http://mongoc.org/libmongoc/current/tutorial.html#include-and-link-libmongoc-in-
 
 ## For the java projects, which use Java's RMI
 
+- run
+```
+rmiregistry -J-Djava.rmi.server.useCodebaseOnly=false &
+```
+
 - Import the projects to your favorite IDE
 
 - Run 'RMIServidor/src/SchoolDatabaseServer.java'
